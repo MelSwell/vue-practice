@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Vue</title>
+  <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>
+  <style>
+    .box {
+      padding: 100px 0;
+      width: 400px;
+      text-align: center;
+      background: #ddd;
+      margin: 20px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello</h1>
+
+  <div id="app">
+    
+    <div v-if="currentBook">
+      <p>{{ currentBook.title }}, written by {{ currentBook.author }}, who is {{ currentBook.age }} years old</p>
+      <img :src="currentBook.img" :alt="currentBook.title">
+      <br>
+      <a v-bind:href="currentBook.url" target="_blank">go to wiki baby</a>
+    </div>
+    <div v-else>
+      <p>Welcome to the library, please find a book</p>
+    </div>
+    <br>
+    <div v-if="currentBook">
+      <button @click="ageify">Increase age</button>
+      <button @click="deageify">Decrease age</button>
+      <br>
+      <button @click="selectBook">Find a new book</button>  
+      <button @click="resetBooks">Back to the entrance</button>
+    </div>
+    <div v-else>
+      <button @click="selectBook">Find a book!</button>
+    </div>
+
+    <div>
+      <ul>
+        <li v-for="book in books">
+          <p>{{ book.title }}, written by {{ book.author }}, who is {{ book.age }} years old</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="box" @mouseover="handleMouseover" @mouseleave="handleMouseleave">mouse over</div>
+    <div class="box" @mouseleave="handleMouseleave">mouse leave</div>
+    <div class="box" @dblClick="handleDblClick">dbl click</div>
+    <div class="box" @mousemove="handleMousemove">position - {{ x }}, {{ y }}</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
