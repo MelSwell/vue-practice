@@ -5,6 +5,15 @@
   <title>Learn Vue</title>
   <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>
   <style>
+    body {
+      background: #eee;
+      max-width: 960px;
+      margin: 20px auto;
+    }
+    p, h3, ul {
+      margin: 0;
+      padding: 0;
+    }
     .box {
       padding: 100px 0;
       width: 400px;
@@ -12,6 +21,9 @@
       background: #ddd;
       margin: 20px;
       display: inline-block;
+    }
+    .fav {
+      color: green;
     }
   </style>
 </head>
@@ -24,7 +36,7 @@
       <p>{{ currentBook.title }}, written by {{ currentBook.author }}, who is {{ currentBook.age }} years old</p>
       <img :src="currentBook.img" :alt="currentBook.title">
       <br>
-      <a v-bind:href="currentBook.url" target="_blank">go to wiki baby</a>
+      <a :href="currentBook.url" target="_blank">go to wiki baby</a>
     </div>
     <div v-else>
       <p>Welcome to the library, please find a book</p>
@@ -43,7 +55,7 @@
 
     <div>
       <ul>
-        <li v-for="book in books">
+        <li v-for="book in books" @click="toggleFav(book)" :class="{ fav: book.isFav }">
           <p>{{ book.title }}, written by {{ book.author }}, who is {{ book.age }} years old</p>
         </li>
       </ul>

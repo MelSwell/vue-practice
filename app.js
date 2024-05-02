@@ -7,35 +7,40 @@ const app = Vue.createApp({
           author: "Frankson Hegbert",
           age: 92,
           url: "https://en.wikipedia.org/wiki/Dune_(novel)",
-          img: "assets/dune.jpg"
+          img: "assets/dune.jpg",
+          isFav: true
         },
         {
           title: "Potter",
           author: "Rowling",
           age: 300,
           url: "https://en.wikipedia.org/wiki/Harry_Potter",
-          img: "assets/potter.png"
+          img: "assets/potter.png",
+          isFav: false
         },
         {
           title: "Rings",
           author: "Token",
           age: 4,
           url: "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings",
-          img: "assets/lotr.gif"
+          img: "assets/lotr.gif",
+          isFav: false
         },
         {
           title: "catch 22",
           author: "hellboy",
           age: 77,
           url: "https://en.wikipedia.org/wiki/Catch-22",
-          img: "assets/Catch22.jpg"
+          img: "assets/Catch22.jpg",
+          isFav: true
         },
         {
           title: "Ima bug",
           author: "Coffkee",
           age: 56,
           url: "https://en.wikipedia.org/wiki/The_Metamorphosis",
-          img: "assets/kafka.jpg"
+          img: "assets/kafka.jpg",
+          isFav: true
         },
       ],
       currentBook: null,
@@ -79,6 +84,14 @@ const app = Vue.createApp({
     handleMousemove(e) {
       this.x = e.offsetX
       this.y = e.offsetY
+    },
+    toggleFav(book) {
+      book.isFav = !book.isFav
+    }
+  },
+  computed: {
+    filteredBooks() {
+      return this.books.filter((book) => book.isFav)
     }
   } 
 })
